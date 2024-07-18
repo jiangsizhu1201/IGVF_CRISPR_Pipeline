@@ -9,13 +9,18 @@ from muon import MuData
 import matplotlib.pyplot as plt
 
 def main(adata_rna, adata_guide, guide_metadata):
-    # Load the guide metadata
+    # Load the data
     guide_metadata = pd.read_excel(guide_metadata)
-    guide_metadata['sgRNA_ID|sequence'] = guide_metadata['sgRNA_ID'] + "|" + guide_metadata['sgRNA_sequences']
-
     adata_rna = ad.read_h5ad(adata_rna)
     adata_guide = ad.read_h5ad(adata_guide)
-    adata_guide.var_names = guide_metadata['sgRNA_ID|sequence']
+
+    # adding var
+    adata_guide.var.reset_index(inplace=True)
+    guide_metadata['guide_number'] = guide_metadata['sgRNA_ID'].apply(lambda x: 1 if 'sg1' in x else (2 if 'sg2' in x else None))
+    adata_guide.var[['guide_number', 'target_elements', 'guide_chr', 'guide_start', 'guide_end', 'sequence']] = guide_metadata[['guide_number', 'Target_name', 'chr', 'start', 'end', 'sgRNA_sequences']]
+
+    guide_metadata['feature_id'] = guide_metadata['sgRNA_ID'] + "|" + guide_metadata['sgRNA_sequences']
+    adata_guide.var_names = guide_metadata['feature_id']
 
     # adding number of nonzero guides and batch number
     adata_guide.obs["number_of_nonzero_guides"] = (adata_guide.X > 0).sum(axis=1)
