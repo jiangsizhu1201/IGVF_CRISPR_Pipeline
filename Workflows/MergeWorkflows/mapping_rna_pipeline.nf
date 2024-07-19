@@ -6,7 +6,7 @@ include { downloadReference } from './processes/downloadReference.nf'
 include { mappingscRNA } from './processes/mappingscRNA.nf'
 
 workflow mapping_rna_pipeline {
-
+    main:
     seqSpecResult = seqSpecParser(
         file("${params.seqSpecDirectory}/${params.seqSpec_yaml_rna}"),
         file(params.seqSpecDirectory),
@@ -23,4 +23,8 @@ workflow mapping_rna_pipeline {
         downloadRefResult.t2g_transcriptome_index,
         seqSpecResult.parsed_seqspec,
         seqSpecResult.whitelist)
+
+    emit:
+    trans_adata = MappingOut.ks_trans_adata_h5ad
+    trans_gnames = MappingOut.ks_trans_gnames
 }

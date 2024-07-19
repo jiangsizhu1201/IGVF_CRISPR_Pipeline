@@ -7,7 +7,7 @@ include { creatingGuideRef } from './processes/createGuideIndex.nf'
 include { mappingGuide } from './processes/mappingGuide.nf'
 
 workflow mapping_guide_pipeline {
-
+    main:
     seqSpecResult = seqSpecParser(
         file("${params.seqSpecDirectory}/${params.seqSpec_yaml_guide}"),
         file(params.seqSpecDirectory),
@@ -23,4 +23,7 @@ workflow mapping_guide_pipeline {
         GuideRef.t2guide,
         seqSpecResult.parsed_seqspec,
         seqSpecResult.whitelist)
+
+    emit:
+    guide_adata = MappingOut.ks_guide_adata_h5ad
 }

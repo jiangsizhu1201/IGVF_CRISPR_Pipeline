@@ -15,7 +15,8 @@ process mappingscRNA {
 
     output:
     path("ks_transcripts_out"), emit: ks_transcripts_out
-    path("ks_transcripts_out/counts_unfiltered/adata.h5ad"), emit: ks_trans
+    path("ks_transcripts_out/counts_unfiltered/adata.h5ad"), emit: ks_trans_adata_h5ad
+    path("ks_transcripts_out/counts_unfiltered/cells_x_genes.genes.names.txt"), emit: ks_trans_gnames
 
     script:
         """

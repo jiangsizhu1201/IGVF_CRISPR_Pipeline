@@ -15,7 +15,7 @@ process mappingGuide {
 
     output:
     path("ks_guide_out"), emit: ks_guide_out
-    path("ks_guide_out/counts_unfiltered/adata.h5ad"), emit: ks_guide_out_adata_h5ad
+    path("ks_guide_out/counts_unfiltered/adata.h5ad"), emit: ks_guide_adata_h5ad
 
     script:
         """
