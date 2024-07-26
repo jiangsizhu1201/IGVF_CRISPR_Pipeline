@@ -5,6 +5,7 @@ import scanpy as sc
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import os
 
 def main(adata_rna, gname_rna, min_genes, min_cells, reference):
 
@@ -30,9 +31,6 @@ def main(adata_rna, gname_rna, min_genes, min_cells, reference):
     plt.xlabel('Barcode Index')
     plt.ylabel('Log of UMI Counts')
     plt.title('Knee Plot')
-
-    # Save knee plot
-    plt.savefig('knee_plot_rna.png')
 
     # Add batch number
     adata_rna.obs['batch_number'] = 1
@@ -65,6 +63,15 @@ def main(adata_rna, gname_rna, min_genes, min_cells, reference):
         color="pct_counts_mt",
         save='plot_scrna.png'
     )
+    
+    # Save knee plot
+    if not os.path.exists('figures'):
+        os.makedirs('figures')
+        print(f"Directory '{'figures'}' created.")
+    else:
+        print(f"Directory already exists.")
+
+    plt.savefig('figures/knee_plot_guide.png')
 
     # Save
     adata_rna.write('filtered_anndata.h5ad')
