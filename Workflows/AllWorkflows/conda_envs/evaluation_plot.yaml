@@ -1,0 +1,19 @@
+name: evaluation_plot 
+channels:
+    - conda-forge
+    - bioconda
+    - defaults
+dependencies:
+    - numpy=1.23.5
+    - pandas=2.2.1
+    - matplotlib=3.9.1
+    - ipykernel=6.29.5
+    - muon=0.1.6
+    - nextworkx
+    - mudata=0.2.4
+    - typing
+    - seaborn
+    - collections
+    - pip
+    - pip:
+    - openpyxl==3.1.2
