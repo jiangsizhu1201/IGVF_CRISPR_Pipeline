@@ -46,9 +46,6 @@ def main(adata_rna, gname_rna, min_genes, min_cells, reference):
     plt.title('Knee Plot')
     plt.savefig('figures/knee_plot_scRNA.png')
 
-    # Add batch number
-    adata_rna.obs['batch_number'] = 1
-
     # Quality control
     sc.pp.filter_cells(adata_rna, min_genes=min_genes)
     sc.pp.filter_genes(adata_rna, min_cells=min_cells)
