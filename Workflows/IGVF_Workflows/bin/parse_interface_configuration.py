@@ -35,8 +35,8 @@ def format_fastq_files(grouped_df, tab_name):
 
 def format_test_fastq_files(filtered_df, tab_name):
     filtered_df = filtered_df.dropna(subset=['read1', 'read2'])
-    read1_list = filtered_df['read1'].tolist()
-    read2_list = filtered_df['read2'].tolist()
+    read1_list = filtered_df['read1'].apply(str.strip).tolist()
+    read2_list = filtered_df['read2'].apply(str.strip).tolist()
 
     if tab_name == 'Guides':
         r1_key = 'test_guide_fastq_r1'
