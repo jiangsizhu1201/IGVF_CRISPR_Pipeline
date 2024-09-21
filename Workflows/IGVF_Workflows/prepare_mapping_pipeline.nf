@@ -12,6 +12,8 @@ workflow prepare_mapping_pipeline {
         Genome = downloadGenome(params.genome_download_path)
     }
 
+    Prepare_covariate = prepare_covariate(params.covariate_list)
+
     emit:
     genome = Genome.genome
     parsed_covariate_file =  Prepare_covariate.parsed_covariate_file
