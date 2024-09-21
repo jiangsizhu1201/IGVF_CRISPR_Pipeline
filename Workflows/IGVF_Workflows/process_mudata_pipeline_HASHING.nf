@@ -61,7 +61,8 @@ workflow process_mudata_pipeline_HASHING {
         concat_anndata_guide, 
         Hashing_Concat.concatenated_hashing_demux,
         file(params.guide_metadata),
-        GTF_Reference.gencode_gtf
+        GTF_Reference.gencode_gtf,
+        params.moi
         )
 
     MuData_Doublets = doublets_scrub_HASHING(MuData.mudata) 
