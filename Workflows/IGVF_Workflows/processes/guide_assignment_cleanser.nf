@@ -9,6 +9,6 @@ process guide_assignment_cleanser {
 
     script:
         """
-            igvf_guide_assignment.py  -i ${mudata_input} -o cleanser_mudata_output.h5mu -t ${threshold} --cleanser
+            cleanser.py  -i ${mudata_input} -o cleanser_mudata_output.h5mu -t ${threshold} --cleanser
         """
 }
