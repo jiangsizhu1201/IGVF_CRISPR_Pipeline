@@ -8,9 +8,9 @@ from scipy.sparse import dok_matrix
 import cmdstanpy
 import os
 
-# Update these paths to point to your compiled models
-CS_MODEL_FILE = os.path.expanduser("~/cmdstan/cs-guide-mixture")
-DC_MODEL_FILE = os.path.expanduser("~/cmdstan/dc-guide-mixture")
+# Update these paths to point to compiled models
+CS_MODEL_FILE = os.path.expanduser("~/IGVF_CRISPR_Pipeline/Workflows/IGVF_Workflows/cmdstan/cs-guide-mixture")
+DC_MODEL_FILE = os.path.expanduser("~/IGVF_CRISPR_Pipeline/Workflows/IGVF_Workflows/cmdstan/dc-guide-mixture")
 
 def posteriors_layer(stan_results, array, threshold=None):
     if threshold is None:

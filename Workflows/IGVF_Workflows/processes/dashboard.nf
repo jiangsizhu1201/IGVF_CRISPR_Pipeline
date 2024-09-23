@@ -1,7 +1,7 @@
 
 process createDashboard {
     cache 'lenient'
-    publishDir './Dashboard_Output'
+    publishDir './Pipeline_Output'
 
     input:
         path guide_seqSpecCheck_plots
@@ -19,7 +19,7 @@ process createDashboard {
         path svg
 
     output:
-        tuple path("evaluation_output"), path("figures"), path("guide_seqSpec_plots"), path("dashboard.html"), path("svg")
+        tuple path("evaluation_output"), path("figures"), path("guide_seqSpec_plots"), path("dashboard.html"), path("svg"), path("inference_mudata.h5mu")
 
     script:
         """
