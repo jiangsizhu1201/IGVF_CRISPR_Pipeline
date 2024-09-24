@@ -54,8 +54,8 @@ def main(adata_rna, gname_rna, min_genes, min_cells, pct_mito, reference):
     sc.pp.filter_genes(adata_rna, min_cells=min_cells)
 
     mt_prefix = "MT-" if reference == "human" else "Mt-"
-    adata_rna.var["mt"] = adata_rna.var_names.str.startswith(mt_prefix)
-    adata_rna.var["ribo"] = adata_rna.var_names.str.startswith(("RPS", "RPL"))
+    adata_rna.var["mt"] = [gene for gene in adata.var['symbol'].to_list() if gene.startswith(mt_prefix)]
+    adata_rna.var["ribo"] = [gene for gene in adata.var['symbol'].to_list() if gene.startswith(("RPS", "RPL"))]
 
     # Calculate QC metrics
     sc.pp.calculate_qc_metrics(adata_rna, qc_vars=["mt", "ribo"], inplace=True, log1p=True)
