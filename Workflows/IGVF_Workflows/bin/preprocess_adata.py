@@ -49,20 +49,12 @@ def main(adata_rna, gname_rna, min_genes, min_cells, pct_mito, reference):
     # Add batch number
     adata_rna.obs['batch_number'] = adata_rna.obs['batch'].factorize()[0] + 1
 
-    # Quality control
-    sc.pp.filter_cells(adata_rna, min_genes=min_genes)
-    sc.pp.filter_genes(adata_rna, min_cells=min_cells)
-
     mt_prefix = "MT-" if reference == "human" else "Mt-"
-    adata_rna.var["mt"] = [gene for gene in adata_rna.var['symbol'].to_list() if gene.startswith(mt_prefix)]
-    adata_rna.var["ribo"] = [gene for gene in adata_rna.var['symbol'].to_list() if gene.startswith(("RPS", "RPL"))]
+    adata_rna.var["mt"] = adata_rna.var['symbol'].str.startswith('MT-')
+    adata_rna.var["ribo"] = adata_rna.var['symbol'].str.startswith(("RPS", "RPL"))
 
     # Calculate QC metrics
     sc.pp.calculate_qc_metrics(adata_rna, qc_vars=["mt", "ribo"], inplace=True, log1p=True)
-
-    # filter for percent mito
-    pct_mito=pct_mito 
-    adata_rna = adata_rna[adata_rna.obs['pct_counts_mt'] < pct_mito, :]
 
     # Plot violin
     sc.pl.violin(
@@ -81,7 +73,14 @@ def main(adata_rna, gname_rna, min_genes, min_cells, pct_mito, reference):
         color="pct_counts_mt",
         save='plot_scrna.png'
     )
-    
+
+    # filter for mic_cells and min_genes
+    sc.pp.filter_cells(adata_rna, min_genes=min_genes)
+    sc.pp.filter_genes(adata_rna, min_cells=min_cells)
+
+    # filter for percent mito
+    pct_mito=pct_mito 
+    adata_rna = adata_rna[adata_rna.obs['pct_counts_mt'] < pct_mito, :]
 
     # Save
     adata_rna.write('filtered_anndata.h5ad')
