@@ -36,9 +36,9 @@ library_spec:
   region_type: null
   name: null
   sequence_type: null
-  sequence: AAAAAAAAAAAAAAAANNNNNNNNNNNNNNNNNNNNNNNNNNNNXAAAAAAAAAAAAAAAA
-  min_len: 90
-  max_len: 90
+  sequence: null
+  min_len: 53
+  max_len: 53
   onlist: null
   regions:
   - !Region
@@ -47,9 +47,9 @@ library_spec:
     region_type: r1_primer
     name: r1_primer
     sequence_type: fixed
-    sequence: AAAAAAAAAAAAAAAA
-    min_len: 16
-    max_len: 16
+    sequence: null
+    min_len: 0
+    max_len: 0
     onlist: null
     regions: null
   - !Region
@@ -64,7 +64,6 @@ library_spec:
     onlist: !Onlist
       location: remote
       filename: 737K-august-2016.txt
-      md5: f62a276e262fdd85262a889d0f48556b
     regions: null
   - !Region
     parent_id: hashing
@@ -86,10 +85,12 @@ library_spec:
     sequence: NNNNNNNNNNNNNNN
     min_len: 15
     max_len: 15
-    onlist: null
+    onlist: !Onlist
+      location: remote
+      filename: HTO_medatada.txt
     regions: null
   - !Region
-    parent_id: guide
+    parent_id: hashing
     region_id: common
     region_type: common
     name: common
@@ -105,8 +106,8 @@ library_spec:
     region_type: r2_primer
     name: r2_primer
     sequence_type: fixed
-    sequence: AAAAAAAAAAAAAAAA
-    min_len: 16
-    max_len: 16
+    sequence: null
+    min_len: 0
+    max_len: 0
     onlist: null
     regions: null

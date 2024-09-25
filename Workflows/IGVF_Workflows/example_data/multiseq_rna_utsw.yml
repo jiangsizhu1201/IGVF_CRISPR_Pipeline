@@ -36,9 +36,9 @@ library_spec:
   region_type: null
   name: null
   sequence_type: null
-  sequence: AAAAAAAAAAAAAAAANNNNNNNNNNNNNNNNNNNNNNNNNNNNXAAAAAAAAAAAAAAAA
-  min_len: 92
-  max_len: 92
+  sequence: null
+  min_len: 118
+  max_len: 118
   onlist: null
   regions:
   - !Region
@@ -47,9 +47,9 @@ library_spec:
     region_type: r1_primer
     name: r1_primer
     sequence_type: fixed
-    sequence: AAAAAAAAAAAAAAAA
-    min_len: 16
-    max_len: 16
+    sequence: null
+    min_len: 0
+    max_len: 0
     onlist: null
     regions: null
   - !Region
@@ -94,8 +94,8 @@ library_spec:
     region_type: r2_primer
     name: r2_primer
     sequence_type: fixed
-    sequence: AAAAAAAAAAAAAAAA
-    min_len: 16
-    max_len: 16
+    sequence: null
+    min_len: 0
+    max_len: 0
     onlist: null
     regions: null
